@@ -5,21 +5,28 @@ import styles from '../styles/common.module.css'
 import { IPost, IUser } from '../interfaces/interfaces'
 import { fetchPosts, fetchUsers } from '../services/api'
 import { componentGesture } from '../services/utility'
+import { promises } from 'node:fs'
 
 
 
 export const PostList: React.FC = () => {
   componentGesture(PostList.name)
+
+  // const [posts, setPosts] = useState<IPost[]>([])
+  // const [users, setUsers] = useState<IUser[]>([])
   
-  const [posts, setPosts] = useState<IPost[]>([])
-  const [users, setUsers] = useState<IUser[]>([])
+  const [[users, posts], setState] = useState<[IUser[], IPost[]]>([[], []])
   const [filterTerm, setFilterTerm] = useState<string>('')
 
 
   useEffect(() => {
     console.log('CDM')
-    fetchUsers().then(setUsers)
-    fetchPosts().then(setPosts)
+    // fetchUsers().then(setUsers)
+    // fetchPosts().then(setPosts)
+    Promise.all([
+      fetchUsers(),
+      fetchPosts(),
+    ]).then(setState)
     return () => console.log('CWU')
   }, [])
 

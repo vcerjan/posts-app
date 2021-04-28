@@ -10,15 +10,21 @@ import { Post } from './Post';
 export const PostWithComments: React.FC = () => {
   componentGesture(PostWithComments.name)
 
-  const [post, setPost] = useState<IPost>()
-  const [comments, setComments] = useState<IComment[]>([])
+  // const [post, setPost] = useState<IPost>()
+  // const [comments, setComments] = useState<IComment[]>([])
+
+  const [[post, comments], setState] = useState<[IPost | undefined, IComment[]]>([undefined, []])  
   const params = useParams<{ id: string }>()
-  const { state } = useLocation<{ userName: string}>()
+  const { state: locationState } = useLocation<{ userName: string}>()
 
   useEffect(() => {
     console.log('CDM')
-    fetchPostById(params.id).then(setPost)
-    fetchComments(params.id).then(setComments)
+    // fetchPostById(params.id).then(setPost)
+    // fetchComments(params.id).then(setComments)
+    Promise.all([
+      fetchPostById(params.id),
+      fetchComments(params.id),
+    ]).then(setState)
     return () => console.log('CWU')
   }, [])
 
@@ -26,7 +32,7 @@ export const PostWithComments: React.FC = () => {
     <div>
       <h4>POST WITH COMMENTS</h4>
       {post &&
-        <Post post={post} userName={state.userName} hasLink={false} hasBody={true} />
+        <Post post={post} userName={locationState.userName} hasLink={false} hasBody={true} />
       }
       <div className="commentsListBox">
         <p>Comments section:</p>
