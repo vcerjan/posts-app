@@ -8,7 +8,7 @@ import { Home as HomePage } from './pages/Home';
 import { componentGesture } from './services/utility';
 
 function App() {
-  componentGesture(App.name)
+  componentGesture('Hello from', App.name)
 
   return (
     <Router>
@@ -26,13 +26,13 @@ function App() {
 
         <Switch>
           <Route path="/posts">
-            <PostList />
+            <PostList gesture="Hello from" />
           </Route>
           <Route path="/post/:id" >
-            <PostWithComments />
+            <PostWithComments gesture="Hello from" />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage gesture="Hello from" />
           </Route>
         </Switch>
       </div>
