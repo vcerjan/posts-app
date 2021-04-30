@@ -7,8 +7,8 @@ import styles from '../styles/common.module.css'
 const getCommenterName = (email: string) =>
   email.substring(0, email.indexOf('@'))
 
-export const Comment: React.FC<ICommentProps> = ({ comment }) => {
-  componentGesture(Comment.name)
+export const Comment: React.FC<ICommentProps> = ({ comment, gesture = '' }) => {
+  componentGesture(gesture, Comment.name)
   
   return (
     <div className={styles.wrapper}>

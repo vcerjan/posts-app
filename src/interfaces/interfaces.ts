@@ -34,6 +34,7 @@ export interface IUser {
 
 export interface ICommentProps {
   comment: IComment
+  gesture?: string
 }
 
 export interface IPostProps {
@@ -41,6 +42,7 @@ export interface IPostProps {
   userName?: string
   hasLink?: boolean
   hasBody?: boolean
+  gesture?: string
 }
 
 export interface IUserProps {

@@ -7,8 +7,8 @@ import { componentGesture } from '../services/utility';
 import { Comment } from './Comment';
 import { Post } from './Post';
 
-export const PostWithComments: React.FC = () => {
-  componentGesture(PostWithComments.name)
+export const PostWithComments: React.FC<{ gesture: string }> = ({ gesture }) => {
+  componentGesture(gesture, PostWithComments.name)
 
   // const [post, setPost] = useState<IPost>()
   // const [comments, setComments] = useState<IComment[]>([])
@@ -32,12 +32,12 @@ export const PostWithComments: React.FC = () => {
     <div>
       <h4>POST WITH COMMENTS</h4>
       {post &&
-        <Post post={post} userName={locationState.userName} hasLink={false} hasBody={true} />
+        <Post post={post} gesture="Nested Hello from" userName={locationState.userName} hasLink={false} hasBody={true} />
       }
       <div className="commentsListBox">
         <p>Comments section:</p>
         {comments.map(comment =>
-          <Comment key={comment.id} comment={comment} />
+          <Comment key={comment.id} gesture="Nested Hello from" comment={comment} />
         )}
       </div>
     </div>

@@ -9,8 +9,8 @@ import { promises } from 'node:fs'
 
 
 
-export const PostList: React.FC = () => {
-  componentGesture(PostList.name)
+export const PostList: React.FC<{ gesture: string }> = ({ gesture }) => {
+  componentGesture(gesture, PostList.name)
 
   // const [posts, setPosts] = useState<IPost[]>([])
   // const [users, setUsers] = useState<IUser[]>([])

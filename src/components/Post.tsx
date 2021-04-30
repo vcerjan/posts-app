@@ -6,8 +6,8 @@ import { IPost, IPostProps } from '../interfaces/interfaces'
 import styles from '../styles/common.module.css'
 import { componentGesture } from '../services/utility'
 
-export const Post: React.FC<IPostProps> = ({ post, userName, hasLink = true, hasBody = false }) => {
-	componentGesture(Post.name)
+export const Post: React.FC<IPostProps> = ({ post, userName, hasLink = true, hasBody = false, gesture = 'Default Hello' }) => {
+	componentGesture(gesture, Post.name)
 
 	return (
 		<>

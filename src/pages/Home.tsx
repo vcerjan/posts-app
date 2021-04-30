@@ -3,8 +3,8 @@ import { componentGesture } from '../services/utility'
 
 import styles from './home.module.css'
 
-export const Home: React.FC = () => {
-  componentGesture(Home.name)
+export const Home: React.FC<{ gesture: string }> = ({ gesture }) => {
+  componentGesture(gesture, Home.name)
 
   return (
     <div className={styles.container}>
